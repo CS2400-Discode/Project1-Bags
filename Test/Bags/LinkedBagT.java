@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class LinkedBagT {
     /***
-     * Tests to see if an empty bag2 affects the output of the three methods
+     * Tests to see if one of the bags being empty affects the output of the three methods
      */
     @Test
-    void emptyBag2() {
+    void emptyBag() {
         BagInterface<String> bag1 = new LinkedBag<>();
         BagInterface<String> bag2 = new LinkedBag<>();
 
