@@ -90,4 +90,33 @@ class LinkedBagT {
         assertEquals("[a]", Arrays.toString(leftOver1.toArray()));
         assertEquals("[d]", Arrays.toString(leftOver2.toArray()));
     }
+    
+    /***
+     * Tests to see if bags with the exact same objects affects the output of the three methods
+     */
+    @Test
+    void exactSameObjectsInBothBags() {
+        BagInterface<String> bag1 = new LinkedBag<>();
+        BagInterface<String> bag2 = new LinkedBag<>();
+
+        bag1.add("a");
+        bag1.add("b");
+        bag1.add("c");
+        bag1.add("d");
+
+        bag2.add("a");
+        bag2.add("b");
+        bag2.add("c");
+        bag2.add("d");
+
+        BagInterface everything = bag1.union(bag2);
+        BagInterface commonItems = bag1.intersection(bag2);
+        BagInterface leftOver1 = bag1.difference(bag2);
+        BagInterface leftOver2 = bag2.difference(bag1);
+
+        assertEquals("[a, b, c, d, a, b, c, d]", Arrays.toString(everything.toArray()));
+        assertEquals("[a, b, c, d]", Arrays.toString(commonItems.toArray()));
+        assertEquals("[]", Arrays.toString(leftOver1.toArray()));
+        assertEquals("[]", Arrays.toString(leftOver2.toArray()));
+    }
 }
