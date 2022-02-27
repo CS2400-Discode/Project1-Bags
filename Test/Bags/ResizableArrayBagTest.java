@@ -32,5 +32,61 @@ class ResizableArrayBagTest {
         assertEquals("[]", Arrays.toString(leftOver2.toArray()));
     }
 
+    /***
+     * Tests to see if repeating objects in one of the bags affects the output of the three methods
+     */
+    @Test
+    void repeatingObjectsInOneBag() {
+        BagInterface<String> bag1 = new ResizableArrayBag<>();
+        BagInterface<String> bag2 = new ResizableArrayBag<>();
 
+        bag1.add("a");
+        bag1.add("c");
+        bag1.add("p");
+        bag1.add("e");
+
+        bag2.add("d");
+        bag2.add("e");
+        bag2.add("e");
+        bag2.add("c");
+
+        BagInterface everything = bag1.union(bag2);
+        BagInterface commonItems = bag1.intersection(bag2);
+        BagInterface leftOver1 = bag1.difference(bag2);
+        BagInterface leftOver2 = bag2.difference(bag1);
+
+        assertEquals("[a, c, p, e, d, e, e, c]", Arrays.toString(everything.toArray()));
+        assertEquals("[c, e]", Arrays.toString(commonItems.toArray()));
+        assertEquals("[a, p]", Arrays.toString(leftOver1.toArray()));
+        assertEquals("[d, e]", Arrays.toString(leftOver2.toArray()));
+    }
+
+    /***
+     * Tests to see if repeating objects in one of the bags affects the output of the three methods
+     */
+    @Test
+    void repeatingObjectsInBothBags() {
+        BagInterface<String> bag1 = new ResizableArrayBag<>();
+        BagInterface<String> bag2 = new ResizableArrayBag<>();
+
+        bag1.add("a");
+        bag1.add("c");
+        bag1.add("c");
+        bag1.add("e");
+
+        bag2.add("d");
+        bag2.add("e");
+        bag2.add("c");
+        bag2.add("c");
+
+        BagInterface everything = bag1.union(bag2);
+        BagInterface commonItems = bag1.intersection(bag2);
+        BagInterface leftOver1 = bag1.difference(bag2);
+        BagInterface leftOver2 = bag2.difference(bag1);
+
+        assertEquals("[a, c, c, e, d, e, c, c]", Arrays.toString(everything.toArray()));
+        assertEquals("[c, c, e]", Arrays.toString(commonItems.toArray()));
+        assertEquals("[a]", Arrays.toString(leftOver1.toArray()));
+        assertEquals("[d]", Arrays.toString(leftOver2.toArray()));
+    }
 }
