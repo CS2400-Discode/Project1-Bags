@@ -33,6 +33,25 @@ class ResizableArrayBagTest {
     }
 
     /***
+     * Tests to see if both of the bags being empty affects the output of the three methods
+     */
+    @Test
+    void bothEmptyBags() {
+        BagInterface<String> bag1 = new ResizableArrayBag<>();
+        BagInterface<String> bag2 = new ResizableArrayBag<>();
+
+        BagInterface everything = bag1.union(bag2);
+        BagInterface commonItems = bag1.intersection(bag2);
+        BagInterface leftOver1 = bag1.difference(bag2);
+        BagInterface leftOver2 = bag2.difference(bag1);
+
+        assertEquals("[]", Arrays.toString(everything.toArray()));
+        assertEquals("[]", Arrays.toString(commonItems.toArray()));
+        assertEquals("[]", Arrays.toString(leftOver1.toArray()));
+        assertEquals("[]", Arrays.toString(leftOver2.toArray()));
+    }
+
+    /***
      * Tests to see if repeating objects in one of the bags affects the output of the three methods
      */
     @Test
