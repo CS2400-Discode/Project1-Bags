@@ -1,6 +1,9 @@
 package Bags;
 import java.util.*;
 
+/***
+ * Alows the user to select what type of bag they want to create, and to instantiate objects within the bag.
+ */
 public class BagDriver {
 
     public static void main(String[] args){
